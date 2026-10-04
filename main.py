@@ -198,18 +198,6 @@ def opcion_eliminar():
         imprimir_info("Operación cancelada")
     pausa()
 
-
-# ---------- EXTRA · ESTADÍSTICAS ----------
-def opcion_estadisticas():
-    imprimir_titulo("ESTADÍSTICAS")
-    datos = estadisticas()
-    print(f"  Estudiantes registrados : {datos['total']}")
-    print(f"  Ciudades distintas   : {len(datos['ciudades'])} -> {', '.join(datos['ciudades'])}")
-    print(f"  Dominios de email    : {', '.join(datos['dominios'])}")
-    print(f"  Sin teléfono         : {len(datos['sin_telefono'])}")
-    pausa()
-
-
 def salir():
     imprimir_info("¡Hasta luego! 👋")
     return "salir"

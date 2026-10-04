@@ -2,56 +2,7 @@ import json
 
 # TUPLA de campos: el orden y los nombres son fijos, por eso no es una lista.
 # La usan el Controlador y la Vista para no repetir textos sueltos.
-CAMPOS_CLIENTE = ("nombre", "apellido", "email", "telefono", "ciudad", "direccion")
 CAMPOS_ESTUDIANTE = ("nombre", "apellido", "email", "carnet")
-
-class Cliente:
-    """MODELO: representa a un cliente."""
-
-    def __init__(self, id_cliente, nombre, apellido, email, telefono, ciudad, direccion):
-        self.id = id_cliente          # no usamos 'id' como parámetro: es una función de Python
-        self.nombre = nombre
-        self.apellido = apellido
-        self.email = email
-        self.telefono = telefono
-        self.ciudad = ciudad
-        self.direccion = direccion
-
-    def obtener_nombre_completo(self):
-        return f"{self.nombre} {self.apellido}"
-
-    def a_diccionario(self):
-        # Objeto -> diccionario (listo para JSON)
-        return {
-            "id": self.id,
-            "nombre": self.nombre,
-            "apellido": self.apellido,
-            "email": self.email,
-            "telefono": self.telefono,
-            "ciudad": self.ciudad,
-            "direccion": self.direccion,
-        }
-
-    @classmethod
-    def desde_diccionario(cls, datos):
-        # Diccionario -> objeto. Es un método de la CLASE, no de un objeto:
-        # se usa así -> Cliente.desde_diccionario({...})
-        return cls(
-            datos["id"],
-            datos["nombre"],
-            datos["apellido"],
-            datos["email"],
-            datos["telefono"],
-            datos.get("ciudad", ""),      # .get por si el archivo es de una versión vieja
-            datos.get("direccion", ""),
-        )
-
-    def a_json(self):
-        return json.dumps(self.a_diccionario(), ensure_ascii=False)
-
-    def __str__(self):
-        return f"[{self.id}] {self.obtener_nombre_completo()} - {self.email}"
-
 
 class Estudiante:
     """MODELO: representa a un estudiante. Usa las cuatro colecciones."""

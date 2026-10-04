@@ -1,4 +1,4 @@
-from models import Cliente, CAMPOS_CLIENTE, Estudiante, CAMPOS_ESTUDIANTE
+from models import Estudiante, CAMPOS_ESTUDIANTE
 from shared.json_manager import GestorJSON
 from shared.herramientas import es_email_valido
 
@@ -90,7 +90,8 @@ def obtener_por_id(id_estudiante):
     return None
 
 
-# ===================== S · SEARCH =====================
+# ===================== S · SEARCH
+
 
 def buscar_estudiantes(termino):
     """Búsqueda lineal: revisa registro por registro los campos de CAMPOS_BUSCABLES."""
@@ -158,29 +159,11 @@ def eliminar_estudiante(id_estudiante):
     return True, f"Estudiante {id_estudiante} eliminado"
 
 
-# ===================== EXTRA: estadísticas con conjuntos =====================
-
-def estadisticas():
-    """Devuelve un DICCIONARIO de resumen. Práctica pura de colecciones."""
-    registros = gestor.leer()
-    ciudades = {r.get("ciudad", "").title() for r in registros if r.get("ciudad")}
-    dominios = {r["email"].split("@")[1].lower() for r in registros if "@" in r["email"]}
-    sin_telefono = [r["nombre"] for r in registros if not r.get("telefono")]
-
-    return {
-        "total": len(registros),
-        "ciudades": sorted(ciudades),
-        "dominios": sorted(dominios),
-        "sin_telefono": sin_telefono,
-    }
-
-
-
 
 def agregar_nota(id_estudiante, materia, nota):
     try:
-        if not (0 <= nota <= 20):
-            return False, "La nota debe ser un número entre 0 y 20"
+        if not (0 <= nota <= 10):
+            return False, "La nota debe ser un número entre 0 y 10"
         
         estudiante = obtener_por_id(id_estudiante)
         if not estudiante:
@@ -209,6 +192,7 @@ def materias_ofertadas():
     for est in obtener_todos():
         todas_materias.update(est.materias)
     return todas_materias
+
 
 def estudiantes_en_comun(id_a, id_b):
     """Usa la intersección de conjuntos para mostrar las materias que dos estudiantes comparten."""
