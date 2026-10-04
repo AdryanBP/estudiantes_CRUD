@@ -185,15 +185,6 @@ def agregar_nota(id_estudiante, materia, nota):
         return False, f"Error inesperado: {error}"
 
 
-
-def materias_ofertadas():
-    """Devuelve un set con todas las materias inscritas por todos los estudiantes, sin repetir."""
-    todas_materias = set()
-    for est in obtener_todos():
-        todas_materias.update(est.materias)
-    return todas_materias
-
-
 def estudiantes_en_comun(id_a, id_b):
     """Usa la intersección de conjuntos para mostrar las materias que dos estudiantes comparten."""
     est_a = obtener_por_id(id_a)

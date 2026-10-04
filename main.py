@@ -4,7 +4,7 @@ from shared.herramientas import (
 )
 from views import (
     crear_estudiante, obtener_todos, obtener_por_id, buscar_estudiantes,
-    actualizar_estudiante, eliminar_estudiante, estadisticas, agregar_nota, materias_ofertadas, estudiantes_en_comun
+    actualizar_estudiante, eliminar_estudiante, agregar_nota, estudiantes_en_comun
 )
 
 
@@ -197,6 +197,8 @@ def opcion_eliminar():
     else:
         imprimir_info("Operación cancelada")
     pausa()
+
+
 
 def salir():
     imprimir_info("¡Hasta luego! 👋")
